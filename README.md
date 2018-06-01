@@ -16,7 +16,8 @@ to end of it, reversing it.
 # Ini_parser.c:
 This is simple implementation for INI (confg) fle parser. It supports sections in
 ini fle and confg atributes separated from their names by “=”. It was fun to write 
-# Asgard.c: It implements all shared memory operations, namely simple allocator for bufer
+# Asgard.c:
+It implements all shared memory operations, namely simple allocator for bufer
 and memory ofset computation functions.
 # Substring.c:
 It implements string fnd operation over continuous stream of data.
@@ -71,7 +72,7 @@ fnish.
 3 The consumer can read one producer at a time, It cannot handle two producers
 reliable currently.
 
-# Referenfes:
+# References:
 1
 Castro, M.; Liskov, B. (2002). "Practical Byzantine Fault Tolerance and Proactive
 Recovery". AsCM Transactions on Computer Systems. Asssociation for Computing
@@ -101,7 +102,7 @@ SHAs3-256 htps://en.wikipedia.org/wiki/SHAs-3
 Strawman proposal htps://en.wikipedia.org/wiki/Straw_man_proposal
 
 
-# Charafters:
+# Characters:
 1
 Heimdall, the manager htps://en.wikipedia.org/wiki/Heimdall_(comics)
 
