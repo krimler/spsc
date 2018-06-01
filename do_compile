@@ -1,0 +1,5 @@
+#https://stackoverflow.com/questions/35129977/how-to-install-latest-version-of-openssl-mac-os-x-el-capitan
+
+#$gcc  -I/usr/local/opt/openssl/include/ m.c jane.c -lssl -lcrypto -o jane
+gcc  -g -O0 asgard.c ini_parser.c jane.c   memory.c     radix_sort.c substring.c util.c  -lssl -lcrypto -o jane
+gcc  -g -O0 asgard.c ini_parser.c memory.c radix_sort.c substring.c  thor.c      util.c  -lssl -lcrypto -o thor
