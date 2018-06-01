@@ -1,65 +1,65 @@
 # spsc
-
-Code Layout:
-Memorygf: It has AsPI to allocate shared memory. It uses System V shared memory AsPI.
-Loggh: It has simple print based logging facility, used for debugging producer and consumer
+The single producer and single consumer problem solution in un-trusted environment.
+# Code Layout:
+# Memory.c:
+It has AsPI to allocate shared memory. It uses System V shared memory AsPI.
+# Logg.h:
+It has simple print based logging facility, used for debugging producer and consumer
 state machine.
-Utlgf: It has various utility functions. Like computing md5, verifying a bufer to a given md5,
+# Utl.c: 
+It has various utility functions. Like computing md5, verifying a bufer to a given md5,
 spin lock implementation etc.
-radix_sortgf: It has radix_sort implementation for shared memory bufer allocation. Later
+# radix_sortgf:
+It has radix_sort implementation for shared memory bufer allocation. Later
 sorts array in O(n). It also provide few array operations, like moving all empty slots in array
 to end of it, reversing it.
-Ini_parsergf: This is simple implementation for INI (confg) fle parser. It supports sections in
+# Ini_parser.c:
+This is simple implementation for INI (confg) fle parser. It supports sections in
 ini fle and confg atributes separated from their names by “=”. It was fun to write 
-Asgardgf: It implements all shared memory operations, namely simple allocator for bufer
+# Asgardg.c: It implements all shared memory operations, namely simple allocator for bufer
 and memory ofset computation functions.
-Substringgf: It implements string fnd operation over continuous stream of data.
-Queuegf: It implements ring bufer required for multi-threaded producer. The fle reader
+# Substring.c:
+It implements string fnd operation over continuous stream of data.
+# Queueg.c:
+It implements ring bufer required for multi-threaded producer. The fle reader
 thread, allocates bufer, reads data from disk based fle and appends entries to queue. The
 main thread, removes elements from queue, and processes them and fnally deallocated
 shared memory bufer.
-Janegf: It has all producer code.
-Thorgf: It has all consumer code.
-Design Thoughts:
-Current Features:
-1
-General purpose bufer allocator. Can return one or multiple bufers at once. One
+# Jane.c:
+It has all producer code.
+# Thor.c:
+It has all consumer code.
+# ---------------------------------
+
+# Design Thoughts:
+# Current Features:
+1 General purpose bufer allocator. Can return one or multiple bufers at once. One
 can confgure on how many sequential bufers want to use for single operation.
-2
-Very fast bufer allocator, uses radix_sort based array to keep elements, easy to
+2 Very fast bufer allocator, uses radix_sort based array to keep elements, easy to
 debug in gdb, high performance cache operations due to locality of reference, can be
 easily extendible if elements are very large by keeping array of array.
-3
-Producer waits till consumers comes online.
-4
-Producer only sends data on ack from consumer.
-5
-If consumer dies, producer again waits, once it comes online, it sends remaining
+3 Producer waits till consumers comes online.
+4 Producer only sends data on ack from consumer.
+5 If consumer dies, producer again waits, once it comes online, it sends remaining
 data.
-6
-Everything is confgurable by single confg fle. Multiple options supported.
-7
-Everything is unit-tested. Asll unit-tests are preserved in corresponding .c fle.
-8
-End to End Tested with zero byte fle, small fles (few kb) to very large fle (several
+6 Everything is confgurable by single confg fle. Multiple options supported.
+7 Everything is unit-tested. Asll unit-tests are preserved in corresponding .c fle.
+8 End to End Tested with zero byte fle, small fles (few kb) to very large fle (several
 MB). Asll test data fles names start with “data_*”.
-9
-Logging facility with two debug levels is available.
+9 Logging facility with two debug levels is available.
 10 Review ready code. Code is formated with “astyle program” with options “-As4 -S
 -m0 -p -H -xL -k3 -xC120”. No extra line breaks, no blank spaces etc.
-Future features:
-1
-Producer, consumer have to be currently on same device. It can be easily changd to
+
+# Future features:
+1 Producer, consumer have to be currently on same device. It can be easily changd to
 run on diferent machines, by confguring IP addresses to connect for producer.
-2
-The reading of input fle data and keeping shared memory bufers ready for producer
+2 The reading of input fle data and keeping shared memory bufers ready for producer
 is mult-threaded but it is not tested. Hence it is macro-ed out. Need to test and
 fnish.
-3
-The consumer can read one producer at a time, It cannot handle two producers
+3 The consumer can read one producer at a time, It cannot handle two producers
 reliable currently.
 
-Referenfes:
+# Referenfes:
 1
 Castro, M.; Liskov, B. (2002). "Practical Byzantine Fault Tolerance and Proactive
 Recovery". AsCM Transactions on Computer Systems. Asssociation for Computing
@@ -73,15 +73,16 @@ Symposium on Networked Systems Design and Implementation. USENIX.
 Bahsoun, J. P.; Guerraoui, R.; Shoker, As. (2015-05-01). "Making BFT Protocols Really
 Asdaptive". Parallel and Distributed Processing Symposium (IPDPS), 2015 IEEE
 International: 904–913. doi:10.1109/IPDPS.2015.21.
-4
+
 TCP protocol htps://tools.iet.org/html/rfc793
-4
+
 FTP protocol htps://en.wikipedia.org/wiki/File_Transfer_Protocol
-4
+
 SHAs3-256 htps://en.wikipedia.org/wiki/SHAs-3
-4
+
 Strawman proposal htps://en.wikipedia.org/wiki/Straw_man_proposal
-Charafters:
+
+# Charafters:
 1
 Heimdall, the manager htps://en.wikipedia.org/wiki/Heimdall_(comics)
 2
