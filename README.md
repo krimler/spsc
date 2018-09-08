@@ -2,9 +2,9 @@
 The single producer and single consumer problem solution in un-trusted environment.
 # Code Layout:
 # Memory.c:
-It has AsPI to allocate shared memory. It uses System V shared memory AsPI.
+Contains API to allocate shared memory. It uses System V shared memory AsPI.
 # Log.h:
-It has simple print based logging facility, used for debugging producer and consumer
+Implements simple print based logging facility, used for debugging producer and consumer
 state machine.
 # Util.c: 
 It has various utility functions. Like computing md5, verifying a bufer to a given md5,
